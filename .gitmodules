@@ -9,3 +9,6 @@
 	path = lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 	branch = v4.8.0
+[submodule "lib/Solidity"]
+	path = lib/Solidity
+	url = https://github.com/TheAlgorithms/Solidity
