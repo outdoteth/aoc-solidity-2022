@@ -2,9 +2,10 @@
 pragma solidity ^0.8.17;
 
 import "forge-std/Script.sol";
+import "TheAlgorithms/Sorts/BubbleSort.sol";
 import "./lib/StringsPlusPlus.sol";
 
-contract Day01Script is Script {
+contract Day01Script is Script, BubbleSort {
     using StringsPlusPlus for string;
 
     string rawInput;
@@ -39,17 +40,24 @@ contract Day01Script is Script {
     function part2() public view {
         string[] memory split = rawInput.split("\n");
 
-        uint256[] memory calorieSums = new uint256[][](split.length);
-        uint256 tmpSum = 0;
+        uint256 elves = 1;
+        for (uint256 i = 0; i < split.length; i++) {
+            elves = split[i].equal("") ? elves + 1 : elves;
+        }
+
+        uint256 currentElf = 0;
+        uint256[] memory calorieSums = new uint256[](elves);
         for (uint256 i = 0; i < split.length; i++) {
             if (split[i].equal("")) {
-                calorieSums[] tmpSum = 0;
+                currentElf += 1;
             } else {
-                tmpSum += split[i].parseInt();
-                console.log(split[i].parseInt());
+                calorieSums[currentElf] += split[i].parseInt();
             }
         }
 
-        console.log("Part 1: ", highestValue);
+        uint256[] memory sortedCalorieSums = bubbleSort(calorieSums);
+        uint256 calorieSum = sortedCalorieSums[elves - 1] + sortedCalorieSums[elves - 2] + sortedCalorieSums[elves - 3];
+
+        console.log("Part 2: ", calorieSum);
     }
 }
