@@ -34,7 +34,7 @@ contract Day01Script is Script, BubbleSort {
             }
         }
 
-        console.log("Part 1: ", highestCalories);
+        console.log("Part 1 solution: ", highestCalories);
     }
 
     function part2() public view {
@@ -58,6 +58,6 @@ contract Day01Script is Script, BubbleSort {
         uint256[] memory sortedCalorieSums = bubbleSort(calorieSums);
         uint256 calorieSum = sortedCalorieSums[elves - 1] + sortedCalorieSums[elves - 2] + sortedCalorieSums[elves - 3];
 
-        console.log("Part 2: ", calorieSum);
+        console.log("Part 2 solution: ", calorieSum);
     }
 }

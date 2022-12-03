@@ -9,10 +9,10 @@ library StringsPlusPlus {
     function split(string memory str, string memory delim) internal pure returns (string[] memory output) {
         strings.slice memory s = str.toSlice();
         strings.slice memory delimSlice = delim.toSlice();
-        output = new string[](s.count(delimSlice) + 1);
+        output = new string[](delimSlice.empty() ? s.len() : s.count(delimSlice) + 1);
 
         for (uint256 i = 0; i < output.length; i++) {
-            output[i] = s.split(delimSlice).toString();
+            output[i] = delimSlice.empty() ? s.nextRune().toString() : s.split(delimSlice).toString();
         }
     }
 
